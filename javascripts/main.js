@@ -3,7 +3,7 @@
  * By: Ronny Rosabal
  * Date: 9/28/15
  * Time: 4:21 PM
- * Content: main interactivity of ronnyrosabal.com
+ * Content: main javascript of ronnyrosabal.com
  */
 
 
@@ -39,6 +39,15 @@ Table of Content
 /**************************************
 #FUNCTIONS
 ***************************************/
+
+if(jQuery !== 'undefined'){
+
+  alert('jQuery is loaded');
+
+}else{
+
+  alert('jQuery is not loaded');
+}
 
 
 
