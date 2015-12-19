@@ -34,19 +34,30 @@ Table of Content
 #GLOBAL VARIABLES
 ***************************************/
 
+var body = document.getElementsByTagName('body');
+var logo = document.getElementById('logo');
+var header = document.createElement('header');
+var heading1 = document.createElement('h1');
+var logoName = document.createTextNode('ronnyrosabal');
+header.appendChild(heading1).appendChild(logoName);
+logo.appendChild(header);
+var headerLogo = logo.getElementsByTagName('header')[0];
+setAttribute(headerLogo, 'class', 'navbar-header');
+var h1Logo = logo.getElementsByTagName('h1')[0];
+setAttribute(h1Logo, 'class', 'navbar-brand');
+
 
 
 /**************************************
 #FUNCTIONS
 ***************************************/
 
-if(jQuery !== 'undefined'){
+function setAttribute( element, attr, value ){
 
-  alert('jQuery is loaded');
+  var att = document.createAttribute(attr);
+  att.value = value;
+  element.setAttributeNode(att);
 
-}else{
-
-  alert('jQuery is not loaded');
 }
 
 
