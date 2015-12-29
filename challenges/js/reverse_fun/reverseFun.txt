@@ -24,7 +24,7 @@ A correctly reordered string.
 
 
 
-Others Solutions
+Other Solutions
 
 function flipNumber (string) {
   let out = [];
@@ -36,3 +36,37 @@ function flipNumber (string) {
 
   return out.join("");
 }
+
+
+function flipNumber(n) {
+  var length = n.length;
+  var result = [];
+  for (var i = 0; i < Math.floor(length / 2); i++) {
+    result.push(n[length - (i + 1)]);
+    result.push(n[i]);
+  }
+  if (length % 2 !== 0) result.push(n[i]);
+  return result.join('');
+}
+
+
+function flipNumber(n)
+{
+  if (n.length === 1)
+    return n;
+
+  n = n.split('').reverse().join('');
+  return n[0] + flipNumber(n.substr(1));
+}
+
+
+const flipNumber = n => {
+  let output = '';
+  for (let i = 0; i < Math.floor(n.length/2); i++) {
+    output += `${n[n.length-1-i]}${n[i]}`;
+  }
+  return n.length%2 ? output + n[Math.ceil(n.length/2-1)] : output;
+};
+
+
+const flipNumber = n => n.length < 2 ? n : n.slice(-1) + n[0] + flipNumber(n.slice(1, -1));
