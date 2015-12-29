@@ -6,12 +6,12 @@
  * Content: Person object
  */
 
-function Person(firstName, lastName, age){
+function Person( firstName, lastName, age ) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.age = age;
 }
 
-Person.prototype.isLegal = function(){
+Person.prototype.isLegal = function() {
   return this.age >= 18;
 };
