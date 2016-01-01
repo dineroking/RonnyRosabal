@@ -1,0 +1,12 @@
+Getting the middle characters of a string. Either the middle character if length of the string is odd or the middle two
+characters if the length is even.
+
+function getMiddle(s)
+{
+  return s.substr(Math.ceil(s.length / 2 - 1), s.length % 2 === 0 ? 2 : 1);
+}
+
+in the above function a string is passed which return a substring substr( start [, length]). The start option is given
+by taking the length of the string divide it by 2 and substrat 1 and round it up (if needed). The length option is
+calculated by condition. If the remainder or string length divided by 2 is 0 then length of substring should 2 otherwise
+it should be 1.
