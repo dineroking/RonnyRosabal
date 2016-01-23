@@ -2,9 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Lottety Numbers</title>
+    <link rel="stylesheet" type="text/css" href="lottery.css">
+    <script src="global.js" defer></script>
+    <script src="lottery.js" defer></script>
+    <title>Lottery Numbers</title>
   </head>
   <body>
-    
+
+    <div id="allNumbers">
+      <h3>Picked numbers.</h3>
+      <ul id="numbers">
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><button id="submitNumbers" type="submit">Enter</button></li>
+      </ul>
+    </div>
+    <div id="winningNumbers">
+      <h3>Winning numbers.</h3>
+      <ul id="winners">
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><input type="number"></li>
+        <li><button id="submitWinners" type="submit">Enter</button></li>
+      </ul>
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="results">
+      <p id="repeat"></p>
+    </div>
+
   </body>
 </html>

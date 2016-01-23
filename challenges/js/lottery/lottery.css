@@ -1,0 +1,41 @@
+/**
+* Project: RonnyRosabal.
+* By: Ronny Rosabal
+* Date: 1/12/16
+* Time: 2:22 PM
+* Content: 
+*/
+
+.stripe{
+  background-color: #ededed;
+  padding: 15px 0 15px 0;
+}
+
+ul{
+  list-style-type: none;
+}
+.numbers{
+  padding-left: 0;
+  padding-right: 0;
+}
+.numbers li{
+  margin: 0 20px 0 20px;
+  display: inline;
+}
+.clear{
+  clear: both;
+}
+
+.highlight{
+  font-weight: bold;
+  color: red;
+}
+
+#allNumbers{
+  float: left;
+}
+
+#winningNumbers{
+  float: left;
+  margin-left: 100px;
+}
