@@ -319,3 +319,66 @@ var descriptor = Object.getOwnPropertyDescriptor( person7, '_name' );
 //this are ways to access each of the attributes of each property if wanted
 console.log( "descriptor.value: ", descriptor.value );
 console.log( "descriptor.configurable: ", descriptor.configurable );
+
+console.log( "" );
+
+console.log( "~~PREVENTING OBJECT MODIFICATION~~" );
+
+console.log( "" );
+
+// PREVENTING OBJECT MODIFICATION
+
+/*If an object is Extensible it means that new properties can be added at any time to the object. This can be change
+ * by using the Object.preventExtensions(). After this no more properties can be added to object.*/
+
+/* using Object.preventExtensions( obj ) : sets the Extensible attribute to false and no more property can be added
+ *
+ *  using Object.seal( obj ) : sets the Extensible attribute to false and the Configurable attribute to false so not
+ *  more properties can be added or properties cannot be deleted or modified
+ *
+ *  using Object.freeze ( obj ) : sets the Extensible attribute to false, the Configurable attribute to false and Wrteable
+ *  attribute to false. Essentially the object becomes read-only and it cannot be unfrozen later.*/
+
+var person8 = {};
+
+//this returns true because the Object attribute Extensible is set to true when created
+console.log( "is person8 extensible: ", Object.isExtensible( person8 ) );
+
+//this works because person8 is extensible so it can be accessed
+person8.firstName = "Ronny";
+console.log( 'person8.firstName: ', person8[ 'firstName' ] );
+
+//now extension attribute is being set to false and so no more properties can be added
+Object.preventExtensions( person8 );
+
+//this returns false because person8 was set to Extensible = false
+console.log( "is person8 extensible", Object.isExtensible( person8 ) );
+
+//in this case it logs undefined because lastName was never added to the object
+person8.lastName = "Rosabal";
+console.log( "person8.lastName: ", person8.lastName );
+
+//this logs false because although person8 is no longer extensible, the configurable attribute is still set to true (object not sealed)
+console.log( "is person8 sealed: ", Object.isSealed( person8 ) );
+
+//this logs false because the object has only been changed to nonextensible and properties can still be changed and the property types
+//can be changed
+console.log( "is person8 frozen: ", Object.isFrozen( person8 ) );
+
+
+var scrambled_poem = "roses red are bacon crispy i bacon love and is blue violets are";
+var scrambled_array = scrambled_poem.split(' ');
+var unscrambled_array = [];
+var i = scrambled_array.length / 2;
+while (scrambled_array.length > 0) {
+  unscrambled_array += scrambled_array.shift();
+  unscrambled_array += " ";
+  if(scrambled_array.length === 0){
+    break;
+  }
+  unscrambled_array += scrambled_array.pop();
+  unscrambled_array += " ";
+  i--;
+}
+
+console.log(unscrambled_array);
