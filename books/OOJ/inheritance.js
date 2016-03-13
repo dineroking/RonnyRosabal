@@ -105,3 +105,90 @@ console.log( 'person2.sayName():', person2.sayName() );
 console.log( 'person1.hasOwnProperty("sayName"):', person1.hasOwnProperty( "sayName" ) );
 //sayName is NOT an own property of person2 because it was inherited from person1
 console.log( 'person2.hasOwnProperty("sayName"):', person2.hasOwnProperty( "sayName" ) );
+
+// CONSTRUCTOR INHERITANCE
+console.log( '' );
+console.log( '~~CONSTRUCTOR INHERITANCE~~' );
+console.log( '' );
+
+/*inherits from the Object.prototype*/
+var Rectangle = function Rectangle( sLength, sWidth ){
+  this.sLength = sLength;
+  this.sWidth = sWidth;
+};
+
+Rectangle.prototype = {
+  constructor : Rectangle,
+  getArea : function(){
+    return this.sLength * this.sWidth;
+  },
+  toString : function(){
+    return '[Rectangle: ' + this.sLength + ' x ' + this.sWidth + ']';
+  }
+};
+
+var Square = function Square( side ){
+  this.sLength = side;
+  this.sWidth = side;
+};
+
+var square = new Square( 5 );
+console.log( 'square.constructor:', square.constructor);
+//in this case [object Object] is logged because it is inheriting the toString() property from the Object.prototype
+console.log( 'square.toString()', square.toString() );
+
+Square.prototype = new Rectangle();
+
+square = new Square( 10 );
+//in this case [Rectangle: 10 x 10] is logged because it is inheriting the toString() property from the Rectangle.prototype
+console.log( 'square.toString()', square.toString() );
+
+Square.prototype.constructor = Square;
+
+Square.prototype.toString = function(){
+  return '[Square: ' + this.sLength + ' x ' + this.sWidth + ']';
+};
+
+square = new Square( 9 );
+//in this case [Square: 9 x 9] is logged because it is using the toString() property from its own prototype object
+console.log( 'square.toString()', square.toString() );
+
+var rect = new Rectangle( 3, 4 );
+//in this case [Rectangle: 3 x 4] is logged because it is using the toString() property from its own prototype object
+console.log( 'rect.toString():', rect.toString() );
+
+console.log('');
+
+console.log( 'rect instanceof Object:', rect instanceof Object );//true because it inherits from Object
+console.log( 'rect instanceof Rectangle:', rect instanceof Rectangle );//true because it is its own instance
+console.log( 'rect instanceof Object:', rect instanceof Square );//false because Square inherits from Rectangle
+console.log( 'square instanceof Object:', square instanceof Object );//true because it inherits from Object
+console.log( 'square instanceof Rectangle:', square instanceof Rectangle );//true because it inherits from Rectangle
+console.log( 'square instanceof Square:', square instanceof Square );//true because it is its own instance
+
+// CONSTRUCTOR STEALING
+console.log( '' );
+console.log( '~~CONSTRUCTOR STEALING~~' );
+console.log( '' );
+
+var Square2 = function Square2( size ){
+  Rectangle.call( this, size, size);
+};
+
+//copies the Rectangle.prototype into the Square2.prototype
+Square2.prototype = Object.create( Rectangle.prototype );
+
+/*creates a toString() property for the Square2 constructor and assigns to var text a copy of the toString() property
+* in the Rectangle constructor and returns text after replacing the word 'Rectangle' with the word 'Square'. When toString()
+* is called in an instance of Square2, [Square: 7 x 7] is logged.*/
+Square2.prototype.toString = function(){
+  var text = Rectangle.prototype.toString.call( this );
+  return text.replace( 'Rectangle', 'Square' );
+};
+
+var square2 = new Square2( 7 );
+
+console.log( 'square2.sLength:', square2.sLength );
+console.log( 'square2.sWidth:', square2.sWidth );
+console.log( 'square2.getArea():', square2.getArea() );
+console.log( 'square2.toString():', square2.toString() );
