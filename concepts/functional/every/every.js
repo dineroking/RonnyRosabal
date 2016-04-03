@@ -76,7 +76,7 @@ var canDrive2 = function( driver ){
 };
 
 
-var checkNumericRange = function( value ){
+var checkNumericRange = function( value, index, arr ){
   if( typeof value !== 'number'){
     return false;
   }else{
