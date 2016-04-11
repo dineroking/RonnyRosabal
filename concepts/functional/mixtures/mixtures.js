@@ -39,9 +39,29 @@ var findFirstItems = function( data ){
     }
   } ) );
 
-  console.log( data.filter( function( person, index, array ){
+  console.log( 'filter:', data.filter( function( person, index, array ){
     return person['_id'] === '570907fb9286910fe4985268';
-  } ) )
+  } ) );
+
+  console.log( 'filter, map:', data.filter( function( person, index, array ){
+    return person['_id'] === '570907fb9286910fe4985268';
+  } ).map( function( person, index, array ){
+    return { "name" : person['name'], 'id' : person['_id'], 'isActive' : person['isActive'] };
+  } ) );
+
+  console.log( 'map > filter _ map:', data.map( function( person, index, array){
+    return person.address.split(' ').filter( function( adr, index, array ){
+      return !isNaN( adr );
+    } ).map( function( adr, index, array ){
+      if( adr.length  < 10 ){
+        var zeros = '';
+        for( var i = 10; i > adr.length; i-- ){
+          zeros += 0;
+        }
+      }
+      return zeros + adr;
+    } );
+  } ) );
 };
 
 makeCall( findFirstItems );
