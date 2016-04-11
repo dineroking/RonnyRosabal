@@ -23,7 +23,25 @@ makeCall( checkConnection ); // connection is good
 
 var findFirstItems = function( data ){
 
-  var findPersonWithID = function( ){};
+  var findPersonWithID = function( person, index, array, id ){
+    if( person[ '_id' ] === id ){
+      return person;
+    }
+  };
+
+  console.log( 'reduce:', data.reduce( function( prev, curr, index, array ){
+    return curr['_id'] === '570907fb9286910fe4985268' ? prev.concat( curr ) : prev;
+  }, [] ) );
+
+  console.log( 'map:', data.map( function( person, index, array, id ){
+    if( person[ '_id' ] === '570907fb9286910fe4985268' ){
+      return person;
+    }
+  } ) );
+
+  console.log( data.filter( function( person, index, array ){
+    return person['_id'] === '570907fb9286910fe4985268';
+  } ) )
 };
 
 makeCall( findFirstItems );
