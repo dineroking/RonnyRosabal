@@ -7,8 +7,35 @@
     <title>Timers</title>
   </head>
   <body>
-    <script type="javascript" src="../../js/jquery-3.0.0.min.js"></script>
-    <script type="javascript" src="../../js/underscore-1.8.3.min.js"></script>
-    <script type="javascript" src="timer.js"></script>
+
+    <div id="container">
+
+      <header>
+        <h2>Clock functions</h2>
+        <nav>
+          <a id="clock" class="first active" href="JavaScript:void(0)">clock</a>
+          <a id="stopwatch" href="JavaScript:void(0)">stopwatch</a>
+          <a id="time" href="JavaScript:void(0)">timer</a>
+          <a id="date" class="last" href="JavaScript:void(0)">date timer</a>
+        </nav>
+      </header>
+
+      <div id="bodyWrapper">
+        <form>
+          <select>
+            <option value="EST">EST</option>
+            <option selected="selected" value="CST">CST</option>
+            <option value="MST">MST</option>
+            <option value="PST">PST</option>
+          </select>
+        </form>
+        <p>current date and time: <span id="timeHolder"></span></p>
+      </div>
+
+    </div>
+
+    <script src="../../js/jquery-3.0.0.min.js"></script>
+    <script src="../../js/underscore-1.8.3.min.js"></script>
+    <script src="timer.js"></script>
   </body>
 </html>

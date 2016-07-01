@@ -5,3 +5,57 @@
 * Time: 1:14 PM
 * Content: global styles for the timer application
 */
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width:       100%;
+  height:      100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size:   1em;
+  color:       #292929;
+}
+
+header {
+  text-align: center;
+}
+
+nav {
+  padding: 1em 0 1em 0;
+  border: 1px solid #c1b5b5;
+  display: inline-block;
+  border-radius: 1em;
+  background-color: #2aabd2;
+}
+
+/*
+the left margin is set to negative because if not there is a space between the padding of the anchor and the border
+of the anchor to its left. This is true except for the left most anchor which is why the margin-left is set to 0
+on the first anchor (a.first)*/
+a {
+  margin-left: -.28em;
+  padding: 1em;
+  color: #000;
+  text-decoration: none;
+  border-right: 1px solid #c1b5b5;
+}
+
+a:hover, a.active {
+  background-color: #0f0f0f;
+  color: #f9f9f9;
+}
+
+a.first {
+  margin-left: 0;
+  border-bottom-left-radius: 1em;
+  border-top-left-radius: 1em;
+}
+a.last {
+  border-right: none;
+  border-bottom-right-radius: 1em;
+  border-top-right-radius: 1em;
+}
