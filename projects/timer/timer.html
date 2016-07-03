@@ -15,13 +15,14 @@
         <nav>
           <a id="clock" class="first active" href="JavaScript:void(0)">clock</a>
           <a id="stopwatch" href="JavaScript:void(0)">stopwatch</a>
-          <a id="time" href="JavaScript:void(0)">timer</a>
+          <a id="timer" href="JavaScript:void(0)">timer</a>
           <a id="date" class="last" href="JavaScript:void(0)">date timer</a>
         </nav>
       </header>
 
       <div id="bodyWrapper">
-        <form>
+
+        <form id="clock_form">
           <select>
             <option value="EST">EST</option>
             <option selected="selected" value="CST">CST</option>
@@ -29,12 +30,26 @@
             <option value="PST">PST</option>
           </select>
         </form>
+
+        <form id="stopwatch_form">
+          <label for="stopwatch_input">stopwatch</label><input id="stopwatch_input" type="text">
+        </form>
+
+        <form id="timer_form">
+          <label for="timer_input">timer</label><input id="timer_input" type="text">
+        </form>
+
+        <form id="date_form">
+          <label for="date_input">date</label><input id="date_input" type="datetime-local" value="2016-10-03T13:00">
+          <!--<button id="date_submit" type="button">calculate</button>-->
+          <input id="date_submit" type="button" value="calculate">
+        </form>
+
         <p>current date and time: <span id="timeHolder"></span></p>
       </div>
-
     </div>
 
-    <script src="../../js/jquery-3.0.0.min.js"></script>
+    <script src="../../js/jquery-2.1.4.min.js"></script>
     <script src="../../js/underscore-1.8.3.min.js"></script>
     <script src="timer.js"></script>
   </body>

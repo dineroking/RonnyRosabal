@@ -59,3 +59,7 @@ a.last {
   border-bottom-right-radius: 1em;
   border-top-right-radius: 1em;
 }
+
+form {
+  display: none;
+}
