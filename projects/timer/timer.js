@@ -48,7 +48,7 @@ $( window ).load( function(){
     targetDate = targetDate.getTime();
     today = new Date().getTime();
     var timeLeft = targetDate - today;
-    daysLeft = Math.floor( timeLeft / ( 1000 * 60 * 60 * 24 ) );
+    daysLeft = Math.abs( Math.floor( timeLeft / ( 1000 * 60 * 60 * 24 ) ) );
     hoursLeft = Math.floor( timeLeft / ( 1000 * 60 * 60 ) % 24  );
     minutesLeft = Math.floor( timeLeft / (1000 * 60 ) % 60 );
     secondsLeft = Math.floor( timeLeft / ( 1000 ) % 60 );
