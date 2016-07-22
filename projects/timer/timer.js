@@ -7,10 +7,31 @@
  */
 
 $( window ).load( function(){
-  var activeNavId, today, dateTimer, daysLeft, hoursLeft, minutesLeft, secondsLeft,  timeHolder = $( "#timeHolder" );
+  var activeNavId, 
+    today, 
+    dateTimer, 
+    days, 
+    hours, 
+    minutes, 
+    seconds,  
+    timeHolder = $( "#timeHolder" ),
+    navAnchors = $("nav a");
 
   //NAV MENU
 
+  /*
+  * 1. take the first item of the navAnchors array and add the class first
+  * 2. take the last item of the navAnchors array and add the class last
+  */
+  var navFirstAndLast = function(){
+    $(navAnchors[0]).addClass("first");
+    $(navAnchors[navAnchors.length - 1]).addClass("last");
+  };
+
+  /*
+  * 1. make an array of all anchors with the class of active which is should be just one if its called after navToggler
+  * 2. assign the first item the array to activeNavId which will be later used to display the form
+  */
   var getActiveNav = function(){
     var anchors = document.getElementsByClassName("active");
     activeNavId = $(anchors[0]).attr("id");
@@ -23,6 +44,7 @@ $( window ).load( function(){
 
   $( "a" ).on( "click", function(){
     navToggler( this );
+    clearTime();
     getActiveNav();
     formVisibility();
   } );
@@ -34,6 +56,10 @@ $( window ).load( function(){
     var formId = "#" + activeNavId + "_form";
     $("form").css("display", "none");
     $(formId).css("display", "block");
+  };
+
+  var clearTime = function(){
+    $("span#timeHolder").html("");
   };
 
   //DATE FORM
@@ -48,41 +74,45 @@ $( window ).load( function(){
     targetDate = targetDate.getTime();
     today = new Date().getTime();
     var timeLeft = targetDate - today;
-    daysLeft = Math.abs( Math.floor( timeLeft / ( 1000 * 60 * 60 * 24 ) ) );
-    hoursLeft = Math.floor( timeLeft / ( 1000 * 60 * 60 ) % 24  );
-    minutesLeft = Math.floor( timeLeft / (1000 * 60 ) % 60 );
-    secondsLeft = Math.floor( timeLeft / ( 1000 ) % 60 );
-    return daysLeft + "d . " + hoursLeft + "h . " +  minutesLeft + "m . " + secondsLeft + "s";
+    days = Math.abs( Math.floor( timeLeft / ( 1000 * 60 * 60 * 24 ) ) );
+    hours = Math.floor( timeLeft / ( 1000 * 60 * 60 ) % 24  );
+    minutes = Math.floor( timeLeft / (1000 * 60 ) % 60 );
+    seconds = Math.floor( timeLeft / ( 1000 ) % 60 );
+    return days + "d . " + hours + "h . " +  minutes + "m . " + seconds + "s";
   };
 
   $("#date_submit").on("click", function( event ){
     event.preventDefault();
     getDateTimer();
     getTimeLeft();
-    testFunction();
+    setTimeLeft();
   } );
 
-  var testFunction = function(){
+  var setTimeLeft = function(){
     setInterval( function(){
       var timeLeft = getTimeLeft();
       timeHolder.html( timeLeft );
     }, 500);
   };
 
-  
-if( activeNavId === "clock" ){
+  //CLOCK FORM
 
-  setInterval( function(){
-    today = new Date();
-    timeHolder.html( today );
-  }, 500 );
-  
-}
+  var getTodaysDate = function(){
+    if( activeNavId === "clock" ){
+      setInterval( function(){
+        today = new Date();
+        timeHolder.html( today );
+      }, 500 );
+    }
+  };
 
   //FUNCTION CALLS WHEN DOCUMENT LOADS
 
   getActiveNav();
   getDateTimer();
+  navFirstAndLast();
+  formVisibility();
+  getTodaysDate();
 
 } );
 

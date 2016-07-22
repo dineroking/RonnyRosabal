@@ -13,10 +13,11 @@
       <header>
         <h2>Clock functions</h2>
         <nav>
-          <a id="clock" class="first active" href="JavaScript:void(0)">clock</a>
+          <a id="clock" class="active" href="JavaScript:void(0)">clock</a>
           <a id="stopwatch" href="JavaScript:void(0)">stopwatch</a>
           <a id="timer" href="JavaScript:void(0)">timer</a>
-          <a id="date" class="last" href="JavaScript:void(0)">date timer</a>
+          <a id="date" href="JavaScript:void(0)">date timer</a>
+          <a id="timeElapsed" href="JavaScript:void(0)">time elapsed</a>
         </nav>
       </header>
 
@@ -29,6 +30,7 @@
             <option value="MST">MST</option>
             <option value="PST">PST</option>
           </select>
+          <input id="clock_input" type="button" value="set timezone">
         </form>
 
         <form id="stopwatch_form">
@@ -45,7 +47,11 @@
           <input id="date_submit" type="button" value="calculate">
         </form>
 
-        <p>current date and time: <span id="timeHolder"></span></p>
+        <form id="timeElapsed_form">
+
+        </form>
+
+        <p><span id="timeHolder"></span></p>
       </div>
     </div>
 
