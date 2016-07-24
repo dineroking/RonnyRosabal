@@ -98,6 +98,7 @@ $( window ).load( function(){
   //CLOCK FORM
 
   var getTodaysDate = function(){
+    today = new Date();               // this is needed, otherwise today variable value is not accessible because of setInterval
     if( activeNavId === "clock" ){
       setInterval( function(){
         today = new Date();
@@ -106,6 +107,50 @@ $( window ).load( function(){
     }
   };
 
+  /**
+   *
+   * @returns { the timezone offset in hours }
+   */
+  var userTimeZone = function(){
+    var form = $("form#clock_form [selected]").val();
+    var zoneOffset;
+
+    switch(form){
+      case "EST":
+        zoneOffset = 4;
+        break;
+      case "CST":
+        zoneOffset = 5;
+        break;
+      case "MST":
+        zoneOffset = 6;
+        break;
+      case "PST":
+        zoneOffset = 7;
+        break
+    }
+    console.log( zoneOffset );
+    return zoneOffset;
+  };
+
+  // when the user changes timezone option it gets rid of the selected attribute of the current option and assigns
+  // it to the new option
+  $("#clock_form select").on("change", function(){
+    var selected = $(this).val();
+    $("[selected]").removeAttr("selected");
+    $("[value=" + selected + "]").attr("selected", "selected");
+  });
+
+  //TODO: finish getting timezone offset
+  var getTimeZoneOffset = function(){
+
+  };
+
+  //TODO: finish calculating the difference between the current time zone and selected time zone
+  $("#clock_input").on("click", function(){
+    userTimeZone();
+  });
+
   //FUNCTION CALLS WHEN DOCUMENT LOADS
 
   getActiveNav();
@@ -113,6 +158,7 @@ $( window ).load( function(){
   navFirstAndLast();
   formVisibility();
   getTodaysDate();
+
 
 } );
 
